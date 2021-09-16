@@ -60,4 +60,11 @@ export abstract class AbstractCurrency {
    * implement this to be used in Uniswap
    */
   public abstract get wrapped(): Token
+
+  /**
+   * Returns token address. Useful in cases where a dependency is needed to detect changes (e.g. useEffect).
+   */
+  public serialize(): string {
+    return this.wrapped.address
+  }
 }

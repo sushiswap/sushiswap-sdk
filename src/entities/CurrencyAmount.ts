@@ -95,4 +95,13 @@ export class CurrencyAmount<T extends Currency> extends Fraction {
     if (this.currency.isToken) return this as CurrencyAmount<Token>
     return CurrencyAmount.fromFractionalAmount(this.currency.wrapped, this.numerator, this.denominator)
   }
+
+  /**
+   * Returns a string representation of the address and currency amount.
+   * Useful in cases where a dependency is needed to detect changes (e.g. useEffect).
+   * @return string [0x6B3595068778DD592e39A122f4f5a5cF09C90fE2 - 1323.94]
+   */
+  public serialize(): string {
+    return `[${this.currency.wrapped.address} - ${this.toExact()}]`
+  }
 }
